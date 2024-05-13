@@ -6,4 +6,4 @@ export const createClient = (baseURL: string | undefined) => {
   return client;
 };
 
-export const NextJSClient = createClient("http://localhost:3000/api");
+export const NextJSClient = createClient(process.env.NEXT_PUBLIC_API_BASE_URL);
