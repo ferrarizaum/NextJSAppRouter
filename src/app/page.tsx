@@ -1,5 +1,5 @@
 import React from "react";
-import { NextJSClient } from "./api/config";
+import { NextJSClient } from "./api/client";
 
 export default function Home() {
   console.log(NextJSClient);
