@@ -6,14 +6,14 @@ export default function Teste() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/todos")
+    fetch("/api/comments")
       .then((response) => response.json())
       .then((data) => setData(data));
   }, []);
   console.log(data);
   return (
     <main>
-      <h1>teste todos</h1>
+      <h1>teste comments</h1>
     </main>
   );
 }
