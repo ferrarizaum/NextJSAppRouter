@@ -1,11 +1,10 @@
 import React from "react";
-import Teste from "./todos/page";
+import Sidebar from "@/components/Sidebar";
 
 export default function Home() {
   return (
     <main>
-      <h1>Testing nextjs app router ;D</h1>
-      <Teste />
+      <Sidebar />
     </main>
   );
 }

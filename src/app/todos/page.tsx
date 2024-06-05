@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-export default function Teste() {
+export default function Todos() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
