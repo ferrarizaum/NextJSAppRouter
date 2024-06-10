@@ -35,8 +35,10 @@ export default function Sidebar() {
         Open
       </IconButton>
       <Drawer open={open} variant="persistent" anchor="left">
-        <IconButton onClick={handleDrawerClose}>Close</IconButton>
-        <List>
+        <IconButton sx={{ mt: 2 }} onClick={handleDrawerClose}>
+          Close
+        </IconButton>
+        <List sx={{ m: 2, p: 2 }}>
           {["Home", "Todos", "Comments"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
