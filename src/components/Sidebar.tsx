@@ -42,7 +42,6 @@ export default function Sidebar() {
           {["Home", "Todos", "Comments"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon></ListItemIcon>
                 <ListItemText
                   primary={text}
                   onClick={() =>
