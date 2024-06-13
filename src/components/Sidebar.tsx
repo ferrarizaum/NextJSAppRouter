@@ -9,8 +9,14 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import React from "react";
+import React, { ReactElement } from "react";
 import { useRouter } from "next/navigation";
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import TaskIcon from "@mui/icons-material/Task";
+import CommentIcon from "@mui/icons-material/Comment";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
@@ -23,33 +29,40 @@ export default function Sidebar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  interface MenuItem {
+    name: string;
+    path: string;
+    icon: ReactElement;
+  }
+
+  const menuItems: MenuItem[] = [
+    { name: "Home", path: "/", icon: <HomeIcon /> },
+    { name: "Todos", path: "/todos", icon: <TaskIcon /> },
+    { name: "Comments", path: "/comments", icon: <CommentIcon /> },
+  ];
+
   return (
     <>
       <IconButton
         color="inherit"
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
+        aria-label={open ? "close drawer" : "open drawer"}
+        onClick={open ? handleDrawerClose : handleDrawerOpen}
         edge="start"
-        sx={{ mr: 2, ...(open && { display: "none" }) }}
+        sx={{ mr: 2 }}
       >
-        Open
+        {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
       </IconButton>
       <Drawer open={open} variant="persistent" anchor="left">
         <IconButton sx={{ mt: 2 }} onClick={handleDrawerClose}>
-          Close
+          <ArrowBackIcon />
         </IconButton>
         <List sx={{ m: 2, p: 2 }}>
-          {["Home", "Todos", "Comments"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText
-                  primary={text}
-                  onClick={() =>
-                    text === "Home"
-                      ? router.push("/")
-                      : router.push(`/${text.toLowerCase()}`)
-                  }
-                />
+          {menuItems.map((item, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton onClick={() => router.push(item.path)}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
           ))}
