@@ -1,30 +1,50 @@
 "use client";
 
-import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
+import Sidebar from "@/components/Sidebar";
 
-interface Comments {
+interface Todo {
   id: number;
+  userId: number;
   title: string;
 }
 
-export default function Comments() {
-  const [data, setData] = useState([]);
+type GroupedTodos = Record<number, Todo[]>;
+
+export default function Todos() {
+  const [groupedTodos, setGroupedTodos] = useState<GroupedTodos>({});
 
   useEffect(() => {
     fetch("/api/comments")
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((data) => {
+        const grouped = groupTodosByUserId(data);
+        setGroupedTodos(grouped);
+      });
   }, []);
-  console.log(data);
+
+  const groupTodosByUserId = (todos: Todo[]): GroupedTodos => {
+    return todos.reduce((acc, todo) => {
+      if (!acc[todo.userId]) {
+        acc[todo.userId] = [];
+      }
+      acc[todo.userId].push(todo);
+      return acc;
+    }, {} as GroupedTodos);
+  };
+  console.log(groupedTodos);
   return (
     <main>
       <Sidebar />
-      <h1>teste comments</h1>
-      {data?.map((e: Comments) => (
-        <div key={e.id} style={{ margin: 20 }}>
-          <p>{e.title}</p>
-        </div>
+      {Object.entries(groupedTodos).map(([userId, todos]) => (
+        <React.Fragment key={parseInt(userId)}>
+          <h2>User ID: {userId}</h2>
+          {todos.map((todo: Todo) => (
+            <div key={todo.id} style={{ margin: 20 }}>
+              <p>{todo.title}</p>
+            </div>
+          ))}
+        </React.Fragment>
       ))}
     </main>
   );
