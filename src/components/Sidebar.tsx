@@ -54,7 +54,7 @@ export default function Sidebar() {
         {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
       </IconButton>
       <Drawer open={open} variant="persistent" anchor="left">
-        <IconButton sx={{ mt: 2 }} onClick={handleDrawerClose}>
+        <IconButton sx={{ mt: 2, mr: 20 }} onClick={handleDrawerClose}>
           <ArrowBackIcon />
         </IconButton>
         <List sx={{ m: 2, p: 2 }}>
