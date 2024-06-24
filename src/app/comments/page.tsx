@@ -35,7 +35,6 @@ export default function Todos() {
   console.log(groupedTodos);
   return (
     <main>
-      <Sidebar />
       {Object.entries(groupedTodos).map(([userId, todos]) => (
         <React.Fragment key={parseInt(userId)}>
           <h2>User ID : {userId}</h2>

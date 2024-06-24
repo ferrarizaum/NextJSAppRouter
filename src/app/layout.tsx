@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../../public/globals.css";
+import { Box } from "@mui/material";
+import Appbar from "@/components/Appbar";
+import Appframe from "@/components/Appframe";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Box>
+          <Appframe children={children} />
+        </Box>
+      </body>
     </html>
   );
 }

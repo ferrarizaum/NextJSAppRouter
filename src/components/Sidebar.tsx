@@ -11,24 +11,18 @@ import {
 } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useRouter } from "next/navigation";
-import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import CommentIcon from "@mui/icons-material/Comment";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export default function Sidebar() {
-  const [open, setOpen] = React.useState(false);
+export interface SidebarProps {
+  isSidebarOpen: boolean;
+}
+
+export default function Sidebar({ isSidebarOpen }: SidebarProps) {
   const router = useRouter();
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   interface MenuItem {
     name: string;
@@ -44,19 +38,11 @@ export default function Sidebar() {
 
   return (
     <>
-      <IconButton
-        color="inherit"
-        aria-label={open ? "close drawer" : "open drawer"}
-        onClick={open ? handleDrawerClose : handleDrawerOpen}
-        edge="start"
-        sx={{ mr: 3 }}
+      <Drawer
+        PaperProps={{ sx: { mt: 8 } }}
+        open={isSidebarOpen}
+        variant="persistent"
       >
-        {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
-      </IconButton>
-      <Drawer open={open} variant="persistent" anchor="left">
-        <IconButton sx={{ mt: 2, mr: 20 }} onClick={handleDrawerClose}>
-          <ArrowBackIcon />
-        </IconButton>
         <List sx={{ m: 2, p: 2 }}>
           {menuItems.map((item, index) => (
             <ListItem key={index} disablePadding>
