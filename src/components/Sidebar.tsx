@@ -49,7 +49,7 @@ export default function Sidebar() {
         aria-label={open ? "close drawer" : "open drawer"}
         onClick={open ? handleDrawerClose : handleDrawerOpen}
         edge="start"
-        sx={{ mr: 2 }}
+        sx={{ mr: 3 }}
       >
         {open ? <ArrowBackIcon /> : <ArrowForwardIcon />}
       </IconButton>
