@@ -32,7 +32,6 @@ export default function Todos() {
       return acc;
     }, {} as GroupedTodos);
   };
-  console.log(groupedTodos);
   return (
     <main>
       {Object.entries(groupedTodos).map(([userId, todos]) => (
