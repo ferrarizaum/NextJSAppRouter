@@ -14,8 +14,6 @@ import { useRouter } from "next/navigation";
 import HomeIcon from "@mui/icons-material/Home";
 import TaskIcon from "@mui/icons-material/Task";
 import CommentIcon from "@mui/icons-material/Comment";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export interface SidebarProps {
   isSidebarOpen: boolean;

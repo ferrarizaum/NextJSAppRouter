@@ -1,6 +1,4 @@
 "use client";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../../public/globals.css";
 import { Box } from "@mui/material";
 import Appbar from "@/components/Appbar";
