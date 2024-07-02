@@ -32,17 +32,34 @@ export default function Todos() {
     }, {} as GroupedTodos);
   };
   return (
-    <main>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        margin: 2,
+        flexWrap: "wrap",
+      }}
+    >
       {Object.entries(groupedTodos).map(([userId, todos]) => (
         <React.Fragment key={parseInt(userId)}>
-          <h2>User ID : {userId}</h2>
-          {todos.map((todo: Todo) => (
-            <div key={todo.id} style={{ margin: 20 }}>
-              <p>{todo.title}</p>
-            </div>
-          ))}
+          <div
+            style={{
+              margin: 8,
+              maxHeight: 200,
+              maxWidth: 300,
+              overflowY: "scroll",
+              overflowX: "clip",
+            }}
+          >
+            <h2>User ID: {userId}</h2>
+            {todos.map((todo: Todo) => (
+              <div key={todo.id}>
+                <p>{todo.title}</p>
+              </div>
+            ))}
+          </div>
         </React.Fragment>
       ))}
-    </main>
+    </div>
   );
 }
