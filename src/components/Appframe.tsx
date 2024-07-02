@@ -22,7 +22,7 @@ export default function Appframe({
       <Box>
         <Sidebar isSidebarOpen={isSidebarOpen} />
       </Box>
-      <Box sx={{ ml: isSidebarOpen ? 30 : 0 }}>{children}</Box>
+      <Box sx={{ ml: isSidebarOpen ? 30 : 0, mt: 10 }}>{children}</Box>
     </Box>
   );
 }

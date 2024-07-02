@@ -17,7 +17,7 @@ interface AppbarProps {
 export default function Appbar({ handleClick, isSidebarOpen }: AppbarProps) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar>
         <Toolbar>
           <IconButton
             onClick={() => handleClick()}
