@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
+import Card from "@/components/Card";
 
 interface Todo {
   id: number;
   userId: number;
   title: string;
+  completed: boolean;
 }
 
 type GroupedTodos = Record<number, Todo[]>;
@@ -19,6 +21,7 @@ export default function Todos() {
       .then((response) => response.json())
       .then((data) => {
         const grouped = groupTodosByUserId(data);
+        console.log(data);
         setGroupedTodos(grouped);
       });
   }, []);
@@ -55,9 +58,11 @@ export default function Todos() {
           >
             <h2>User ID: {userId}</h2>
             {todos.map((todo: Todo) => (
-              <div key={todo.id}>
-                <p>{todo.title}</p>
-              </div>
+              <Card
+                key={todo.id}
+                title={todo.title}
+                completed={todo.completed}
+              />
             ))}
           </div>
         </React.Fragment>
