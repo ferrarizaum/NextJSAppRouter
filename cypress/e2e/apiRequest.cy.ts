@@ -5,3 +5,4 @@ describe("API Request Test", () => {
     cy.wait("@getTodos").its("response.statusCode").should("eq", 200);
   });
 });
+//ADD MORE TESTS
