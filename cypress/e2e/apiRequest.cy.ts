@@ -1,15 +1,10 @@
-describe("API Request Test", () => {
-  it("successfully makes a request to the API", () => {
-    cy.intercept("GET", "/api/todos").as("getTodos");
-    cy.visit("");
-    cy.wait("@getTodos").its("response.statusCode").should("eq", 200);
+describe("API Testing", () => {
+  it("should successfully retrieve user data", () => {
+    cy.request("GET", "http://localhost:3000/api/todos").then((response) => {
+      expect(response.status).to.equal(200);
+    });
+    cy.request("GET", "http://localhost:3000/api/comments").then((response) => {
+      expect(response.status).to.equal(200);
+    });
   });
 });
-describe("API Request Test", () => {
-  it("successfully makes a request to the API", () => {
-    cy.intercept("GET", "/api/comments").as("getComments");
-    cy.visit("");
-    cy.wait("@getComments").its("response.statusCode").should("eq", 200);
-  });
-});
-//ADD MORE TESTS
